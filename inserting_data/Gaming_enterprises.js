@@ -15,6 +15,18 @@ db.empresasProdutorasDeGames.insertOne({
     "colecionaveis": [
         "Ellie Figure",
         "Joel Figure"
+    ],
+    "comentarios": [
+        {
+            "usuario": "johndoe",
+            "comentario": "Excelente empresa com jogos emocionantes!",
+            "indicacao": 10
+        },
+        {
+            "usuario": "janedoe",
+            "comentario": "Os gráficos dos jogos são incríveis.",
+            "indicacao": 9
+        }
     ]
 });
 
@@ -35,6 +47,18 @@ db.empresasProdutorasDeGames.insertMany([
         "colecionaveis": [
             "GTAV Poster",
             "Arthur Morgan Figure"
+        ],
+        "comentarios": [
+            {
+                "usuario": "gamer123",
+                "comentario": "Adoro a série GTA!",
+                "indicacao": 10
+            },
+            {
+                "usuario": "player456",
+                "comentario": "RDR2 é um dos melhores jogos que já joguei.",
+                "indicacao": 9
+            }
         ]
     },
     {
@@ -47,6 +71,18 @@ db.empresasProdutorasDeGames.insertMany([
         "colecionaveis": [
             "Geralt Statue",
             "The Witcher Poster"
+        ],
+        "comentarios": [
+            {
+                "usuario": "witcherfan",
+                "comentario": "The Witcher 3 tem uma história incrível.",
+                "indicacao": 10
+            },
+            {
+                "usuario": "rpglover",
+                "comentario": "Melhor RPG de todos os tempos.",
+                "indicacao": 10
+            }
         ]
     },
     {
@@ -59,6 +95,18 @@ db.empresasProdutorasDeGames.insertMany([
         ],
         "colecionaveis": [
             "Portal Gun Replica"
+        ],
+        "comentarios": [
+            {
+                "usuario": "portalplayer",
+                "comentario": "Portal 2 é genial!",
+                "indicacao": 10
+            },
+            {
+                "usuario": "halflifefan",
+                "comentario": "Ainda espero pelo Half-Life 3.",
+                "indicacao": 8
+            }
         ]
     },
     {
@@ -73,9 +121,21 @@ db.empresasProdutorasDeGames.insertMany([
             "The Elder Scrolls"
         ],
         "colecionaveis": [
-             "Dragonborn Statue",
-        "Neravarine Action Figure",
-        "Daedric Sword Replica"
+            "Dragonborn Statue",
+            "Neravarine Action Figure",
+            "Daedric Sword Replica"
+        ],
+        "comentarios": [
+            {
+                "usuario": "tesfan",
+                "comentario": "Skyrim é um jogo que sempre volto a jogar.",
+                "indicacao": 10
+            },
+            {
+                "usuario": "morrowindlover",
+                "comentario": "Morrowind tem uma nostalgia especial.",
+                "indicacao": 9
+            }
         ]
     }
 ]);

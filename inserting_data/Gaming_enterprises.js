@@ -9,16 +9,15 @@ db.empresasProdutorasDeGames.insertOne({
     "paisOrigem": "EUA",
     "fundacao": 1984,
     "jogosDesenvolvidos": [
-        {
-            "titulo": "The Last of Us",
-            "vendas": 17.0
-        },
-        {
-            "titulo": "The Last of Us Part II",
-            "vendas": 10.0
-        }
+        "The Last of Us",
+        "The Last of Us Part II"
+    ],
+    "colecionaveis": [
+        "Ellie Figure",
+        "Joel Figure"
     ]
 });
+
 
 db.empresasProdutorasDeGames.find().pretty();
 
@@ -29,17 +28,13 @@ db.empresasProdutorasDeGames.insertMany([
         "paisOrigem": "EUA",
         "fundacao": 1998,
         "jogosDesenvolvidos": [
-            {
-                "titulo": "Grand Theft Auto V",
-                "vendas": 140.0
-            },{
-                "titulo": "Grand Theft Auto IV",
-                "vendas": 110.0
-            },
-            {
-                "titulo": "Red Dead Redemption 2",
-                "vendas": 50.0
-            }
+            "Grand Theft Auto V",
+            "Grand Theft Auto IV",
+            "Red Dead Redemption 2"
+        ],
+        "colecionaveis": [
+            "GTAV Poster",
+            "Arthur Morgan Figure"
         ]
     },
     {
@@ -47,14 +42,11 @@ db.empresasProdutorasDeGames.insertMany([
         "paisOrigem": "Polônia",
         "fundacao": 2002,
         "jogosDesenvolvidos": [
-            {
-                "titulo": "The Witcher 3: Wild Hunt",
-                "vendas": 28.0
-            },
-            {
-                "titulo": "Cyberpunk 2077",
-                "vendas": 13.0
-            }
+            "The Witcher 3: Wild Hunt"
+        ],
+        "colecionaveis": [
+            "Geralt Statue",
+            "The Witcher Poster"
         ]
     },
     {
@@ -62,14 +54,11 @@ db.empresasProdutorasDeGames.insertMany([
         "paisOrigem": "EUA",
         "fundacao": 1996,
         "jogosDesenvolvidos": [
-            {
-                "titulo": "Half-Life 2",
-                "vendas": 12.0
-            },
-            {
-                "titulo": "Portal 2",
-                "vendas": 4.0
-            }
+            "Half-Life 2",
+            "Portal 2"
+        ],
+        "colecionaveis": [
+            "Portal Gun Replica"
         ]
     },
     {
@@ -77,30 +66,20 @@ db.empresasProdutorasDeGames.insertMany([
         "paisOrigem": "EUA",
         "fundacao": 1986,
         "jogosDesenvolvidos": [
-            {
-                "titulo": "The Elder Scrolls V: Skyrim",
-                "vendas": 43.0
-            },
-            {
-                "titulo": "The Elder Scrolls IV: Morrowind",
-                "vendas": 24.0
-            },
-            {
-                "titulo": "The Elder Scrolls III: Oblivion",
-                "vendas": 54.0
-            },
-            {
-                "titulo": "The Elder Scrolls II: Daggerfall",
-                "vendas": 32.0
-            },
-            {
-                "titulo": "The Elder Scrolls",
-                "vendas": 4.0
-            }
+            "The Elder Scrolls V: Skyrim",
+            "The Elder Scrolls IV: Morrowind",
+            "The Elder Scrolls III: Oblivion",
+            "The Elder Scrolls II: Daggerfall",
+            "The Elder Scrolls"
+        ],
+        "colecionaveis": [
+             "Dragonborn Statue",
+        "Neravarine Action Figure",
+        "Daedric Sword Replica"
         ]
     }
 ]);
 
-
-
+//db.empresasProdutorasDeGames.remove({});
+    
 db.empresasProdutorasDeGames.find().pretty();

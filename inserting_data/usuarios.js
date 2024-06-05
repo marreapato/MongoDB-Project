@@ -46,7 +46,7 @@ db.usuarios.insertMany([
         "nickname": "janedoe"
     },
     {
-        "nome": "Gamer 123",
+        "nome": "Gabriel Ribeiro",
         "idade": 22,
         "email": "gamer123@example.com",
         "endereco": "Rua F, 987, Belo Horizonte, MG",
@@ -55,7 +55,7 @@ db.usuarios.insertMany([
         "nickname": "gamer123"
     },
     {
-        "nome": "Player 456",
+        "nome": "Paula Lima",
         "idade": 24,
         "email": "player456@example.com",
         "endereco": "Rua G, 159, São Paulo, SP",
@@ -64,7 +64,7 @@ db.usuarios.insertMany([
         "nickname": "player456"
     },
     {
-        "nome": "Witcher Fan",
+        "nome": "Washington Luis",
         "idade": 29,
         "email": "witcherfan@example.com",
         "endereco": "Rua H, 753, Rio de Janeiro, RJ",
@@ -73,7 +73,7 @@ db.usuarios.insertMany([
         "nickname": "witcherfan"
     },
     {
-        "nome": "RPG Lover",
+        "nome": "Renato Livio",
         "idade": 27,
         "email": "rpglover@example.com",
         "endereco": "Rua I, 246, Belo Horizonte, MG",
@@ -82,7 +82,7 @@ db.usuarios.insertMany([
         "nickname": "rpglover"
     },
     {
-        "nome": "Portal Player",
+        "nome": "Paulo Fagundes",
         "idade": 23,
         "email": "portalplayer@example.com",
         "endereco": "Rua J, 135, São Paulo, SP",
@@ -91,7 +91,7 @@ db.usuarios.insertMany([
         "nickname": "portalplayer"
     },
     {
-        "nome": "Half-Life Fan",
+        "nome": "Fernanda Souza",
         "idade": 32,
         "email": "halflifefan@example.com",
         "endereco": "Rua K, 864, Rio de Janeiro, RJ",
@@ -100,7 +100,7 @@ db.usuarios.insertMany([
         "nickname": "halflifefan"
     },
     {
-        "nome": "TES Fan",
+        "nome": "Cassie Silva",
         "idade": 31,
         "email": "tesfan@example.com",
         "endereco": "Rua L, 975, Belo Horizonte, MG",
@@ -109,7 +109,7 @@ db.usuarios.insertMany([
         "nickname": "tesfan"
     },
     {
-        "nome": "Morrowind Lover",
+        "nome": "Oliver Rivera",
         "idade": 33,
         "email": "morrowindlover@example.com",
         "endereco": "Rua M, 468, São Paulo, SP",

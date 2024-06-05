@@ -4,7 +4,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Last of Us",
         "genero": "Ação e Aventura",
-        "plataforma": ["PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
         "anoLancamento": 2013,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.7},
@@ -16,7 +16,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Last of Us Part II",
         "genero": "Ação e Aventura",
-        "plataforma": ["PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
         "anoLancamento": 2020,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.5},
@@ -28,7 +28,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "Grand Theft Auto V",
         "genero": "Ação",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2013,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.5},
@@ -41,7 +41,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "Grand Theft Auto IV",
         "genero": "Ação",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2008,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.0},
@@ -54,7 +54,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "Red Dead Redemption 2",
         "genero": "Ação e Aventura",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2018,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.8},
@@ -67,7 +67,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Witcher 3: Wild Hunt",
         "genero": "RPG",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Polonês", "Francês"],
         "anoLancamento": 2015,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.5},
@@ -80,7 +80,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "Half-Life 2",
         "genero": "FPS",
-        "plataforma": ["PC"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
         "anoLancamento": 2004,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.6},
@@ -92,7 +92,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "Portal 2",
         "genero": "Puzzle",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2011,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.5},
@@ -105,7 +105,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Elder Scrolls V: Skyrim",
         "genero": "RPG",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2011,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.3},
@@ -118,7 +118,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Elder Scrolls IV: Morrowind",
         "genero": "RPG",
-        "plataforma": ["PC", "Xbox"],
+        "idiomasDisponiveis": ["Inglês", "Português"],
         "anoLancamento": 2002,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.1},
@@ -130,7 +130,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Elder Scrolls III: Oblivion",
         "genero": "RPG",
-        "plataforma": ["PC", "Xbox", "PlayStation"],
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês"],
         "anoLancamento": 2006,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 9.2},
@@ -143,7 +143,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Elder Scrolls II: Daggerfall",
         "genero": "RPG",
-        "plataforma": ["PC"],
+        "idiomasDisponiveis": ["Inglês"],
         "anoLancamento": 1996,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 8.5},
@@ -155,7 +155,7 @@ db.jogosVideoGame.insertMany([
     {
         "titulo": "The Elder Scrolls",
         "genero": "RPG",
-        "plataforma": ["PC"],
+        "idiomasDisponiveis": ["Inglês"],
         "anoLancamento": 1994,
         "criticas": [
             {"site": "Metacritic", "avaliacao": 7.8},

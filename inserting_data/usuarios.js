@@ -7,7 +7,7 @@ db.usuarios.insertMany([
         "endereco": "Rua A, 123, São Paulo, SP",
         "jogos": ["The Last of Us", "Grand Theft Auto V"],
         "acessoAntecipado": true,
-        "nickname": "JSilva"
+        "nickname": "jsilva"
     },
     {
         "nome": "Maria Oliveira",
@@ -16,7 +16,7 @@ db.usuarios.insertMany([
         "endereco": "Rua B, 456, Rio de Janeiro, RJ",
         "jogos": ["Red Dead Redemption 2", "The Witcher 3: Wild Hunt"],
         "acessoAntecipado": false,
-        "nickname": "MariaOliveira"
+        "nickname": "mariaoliveira"
     },
     {
         "nome": "Carlos Souza",
@@ -25,7 +25,7 @@ db.usuarios.insertMany([
         "endereco": "Rua C, 789, Belo Horizonte, MG",
         "jogos": ["Half-Life 2", "Portal 2", "The Elder Scrolls V: Skyrim"],
         "acessoAntecipado": true,
-        "nickname": "CSouza"
+        "nickname": "csouza"
     },
     {
         "nome": "John Doe",

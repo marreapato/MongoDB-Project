@@ -1,8 +1,6 @@
 use projeto3cin
 
-show collections
-
-// empresas produtoras de Games
+// Inserir documentos sem "colecionaveis"
 
 db.empresasProdutorasDeGames.insertOne({
     "nome": "Naughty Dog",
@@ -11,10 +9,6 @@ db.empresasProdutorasDeGames.insertOne({
     "jogosDesenvolvidos": [
         "The Last of Us",
         "The Last of Us Part II"
-    ],
-    "colecionaveis": [
-        "Ellie Figure",
-        "Joel Figure"
     ],
     "comentarios": [
         {
@@ -30,10 +24,6 @@ db.empresasProdutorasDeGames.insertOne({
     ]
 });
 
-
-db.empresasProdutorasDeGames.find().pretty();
-
-
 db.empresasProdutorasDeGames.insertMany([
     {
         "nome": "Rockstar Games",
@@ -43,10 +33,6 @@ db.empresasProdutorasDeGames.insertMany([
             "Grand Theft Auto V",
             "Grand Theft Auto IV",
             "Red Dead Redemption 2"
-        ],
-        "colecionaveis": [
-            "GTAV Poster",
-            "Arthur Morgan Figure"
         ],
         "comentarios": [
             {
@@ -68,10 +54,6 @@ db.empresasProdutorasDeGames.insertMany([
         "jogosDesenvolvidos": [
             "The Witcher 3: Wild Hunt"
         ],
-        "colecionaveis": [
-            "Geralt Statue",
-            "The Witcher Poster"
-        ],
         "comentarios": [
             {
                 "usuario": "witcherfan",
@@ -92,9 +74,6 @@ db.empresasProdutorasDeGames.insertMany([
         "jogosDesenvolvidos": [
             "Half-Life 2",
             "Portal 2"
-        ],
-        "colecionaveis": [
-            "Portal Gun Replica"
         ],
         "comentarios": [
             {
@@ -120,11 +99,6 @@ db.empresasProdutorasDeGames.insertMany([
             "The Elder Scrolls II: Daggerfall",
             "The Elder Scrolls"
         ],
-        "colecionaveis": [
-            "Dragonborn Statue",
-            "Neravarine Action Figure",
-            "Daedric Sword Replica"
-        ],
         "comentarios": [
             {
                 "usuario": "tesfan",
@@ -140,6 +114,5 @@ db.empresasProdutorasDeGames.insertMany([
     }
 ]);
 
-//db.empresasProdutorasDeGames.remove({});
-    
+// Verificar os documentos inseridos
 db.empresasProdutorasDeGames.find().pretty();

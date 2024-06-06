@@ -31,3 +31,28 @@ db.usuarios.aggregate([{$project:{"nome":1,"jogos":1,"_id":0}}]).pretty();
 
 db.usuarios.find({},{"nome":true,"jogos":true,_id:false}).pretty();
 
+// operador de maior ponto 7
+
+db.jogosVideoGame.find({"quantidadeHoras":{$gte:40}}).pretty();
+
+//operador unwind ponto 8
+db.empresasProdutorasDeGames.find();//tinha 5
+db.empresasProdutorasDeGames.aggregate([{ $unwind: "$jogosDesenvolvidos" }]);//fica com 13
+
+db.empresasProdutorasDeGames.aggregate([{ $unwind: "$jogosDesenvolvidos" },{$match:{"nome":"Bethesda"}}]).pretty();
+
+
+//operador de agrupamento ponto 9 contagem de paises das empresas
+
+db.empresasProdutorasDeGames.aggregate([{ $group: { _id: "$paisOrigem", count: { $sum: 1 } } }]);
+
+//operador sum ponto 10
+
+db.jogosVideoGame.aggregate([{ $group: { _id: "$genero", valorPreco: { $sum: "$quantidadeHoras" } } }]);
+
+
+
+
+
+
+

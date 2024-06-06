@@ -23,4 +23,11 @@ db.empresasProdutorasDeGames.aggregate([{ $match: { "fundacao": { $gte: 1990 } }
 
 db.empresasProdutorasDeGames.find({"fundacao":{$gte:1990}}).pretty();
 
+//projecao operador de agregacao esconde o id pont 6
+
+db.usuarios.aggregate([{$project:{"nome":1,"jogos":1,"_id":0}}]).pretty();
+
+//equivale A
+
+db.usuarios.find({},{"nome":true,"jogos":true,_id:false}).pretty();
 

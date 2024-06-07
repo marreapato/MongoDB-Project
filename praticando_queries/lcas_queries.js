@@ -67,4 +67,8 @@ db.jogosVideoGame.aggregate([{$group:{_id:"$genero",avgPreco:{$avg:"$preco"}}}])
 
 db.usuarios.find({ "email": { $exists: false } });
 
-//ponto 15
+//pontos 15 (sort) e 16 (limit)
+
+db.usuarios.find().sort({"idade":1}).limit(5).pretty(); // 5 usuarios mais novos
+
+//multiply ponto 17

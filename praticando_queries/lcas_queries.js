@@ -1,3 +1,4 @@
+
 use projeto3cin
 
 show collections
@@ -50,9 +51,20 @@ db.empresasProdutorasDeGames.aggregate([{ $group: { _id: "$paisOrigem", count: {
 
 db.jogosVideoGame.aggregate([{ $group: { _id: "$genero", valorPreco: { $sum: "$quantidadeHoras" } } }]);
 
+//Count ponto 11 (usuarios com mais de 31 anos)
 
+db.usuarios.find({"idade":{$gte:32}}).pretty().count();
 
+//usando max ponto 12 (idade maxima)
 
+db.usuarios.aggregate([{ $group: { _id: null, maxIdade: { $max: "$idade" } } }]).pretty();
 
+//ponto 13 avg - media
 
+db.jogosVideoGame.aggregate([{$group:{_id:"$genero",avgPreco:{$avg:"$preco"}}}]).pretty();
 
+//ponto 14 documentos em que o campo email naop existe
+
+db.usuarios.find({ "email": { $exists: false } });
+
+//ponto 15

@@ -71,4 +71,10 @@ db.usuarios.find({ "email": { $exists: false } });
 
 db.usuarios.find().sort({"idade":1}).limit(5).pretty(); // 5 usuarios mais novos
 
-//multiply ponto 17
+//multiply ponto 17 quantidade de horas (considerando cada possibilidade de idioma)
+
+db.jogosVideoGame.aggregate([{$project:{horasPorIdioma:{$multiply:[{$size:"$idiomasDisponiveis"},"$quantidadeHoras"]}}}]);
+// uma mais complexa (preco por horas de cada jogo)
+
+db.jogosVideoGame.aggregate([{$project:{"titulo":1,horasPorIdioma:{$multiply:["$preco",{$divide:[1,"$quantidadeHoras"]}]}}}]).pretty();
+

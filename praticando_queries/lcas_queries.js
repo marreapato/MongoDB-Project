@@ -78,3 +78,13 @@ db.jogosVideoGame.aggregate([{$project:{horasPorIdioma:{$multiply:[{$size:"$idio
 
 db.jogosVideoGame.aggregate([{$project:{"titulo":1,horasPorIdioma:{$multiply:["$preco",{$divide:[1,"$quantidadeHoras"]}]}}}]).pretty();
 
+//push colocar jogo em usuario ponto 18
+
+db.usuarios.updateOne({ "nome": "João Silva" }, { $push: { "jogos": "The Witcher 3: Wild Hunt" } });
+
+db.usuarios.find();
+
+//operador out para criar uma colecao com a agregacao ponto 19
+
+
+

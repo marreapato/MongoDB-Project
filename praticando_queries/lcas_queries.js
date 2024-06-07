@@ -95,4 +95,20 @@ db.empresasEUA.aggregate([
 ]);
 
 db.empresasEUA.find().pretty();
+
+//ponto 20 e 21 4 letras iniciais do nome em maiusculo (poderia ser usado paraconstruir um codigo,etc)
+
+db.usuarios.aggregate([{ $project: { CodName: { $toUpper:{$substr: ["$nome", 0, 4] } } }}]);
+
+//ponto 22 - concatenation a criacao de um id de usuario com base no nome e nickname
+
+db.usuarios.aggregate([{ $project: { fullName: { $concat: ["$nome", " ", "$nickname"] } } }]);
+
+db.usuarios.aggregate([{ $project: { CodName: {$concat:[{$toUpper:{$substr: ["$nome", 0, 4] }},"-",{$toUpper:"$nickname"}] } }}]);
+
+//ponto 23 usando o where - empresa fundada apos o ano 2000
+
+db.empresasProdutorasDeGames.find({$where:"this.fundacao>2000"});
   
+//ponto 24 map reduce
+

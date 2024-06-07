@@ -110,5 +110,13 @@ db.usuarios.aggregate([{ $project: { CodName: {$concat:[{$toUpper:{$substr: ["$n
 
 db.empresasProdutorasDeGames.find({$where:"this.fundacao>2000"});
   
-//ponto 24 map reduce
+//ponto 24 map reduce -- pendente
+
+db.empresasProdutorasDeGames.mapReduce(
+  function() { emit(this.paisOrigem, 1); },
+  function(key, values) { return Array.sum(values); },
+  { out: "paisOrigemCounts" }
+);
+
+db.paisOrigemCounts.find();
 

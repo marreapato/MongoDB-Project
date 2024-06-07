@@ -86,5 +86,13 @@ db.usuarios.find();
 
 //operador out para criar uma colecao com a agregacao ponto 19
 
+db.empresasProdutorasDeGames.aggregate([{ $match: { "paisOrigem": "EUA" } }, { $out: "empresasEUA" }]);
 
+db.empresasEUA.aggregate([
+  { $unwind: "$jogosDesenvolvidos" },
+  { $project: { _id: 0, jogosDesenvolvidos: 1, nome: 1 } },// necessario para nao ter id duplicado
+  { $out: "empresasEUA" }
+]);
 
+db.empresasEUA.find().pretty();
+  

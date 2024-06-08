@@ -110,7 +110,7 @@ db.usuarios.aggregate([{ $project: { CodName: {$concat:[{$toUpper:{$substr: ["$n
 
 db.empresasProdutorasDeGames.find({$where:"this.fundacao>2000"});
   
-//ponto 24 map reduce -- meda de horas de cada genero de jogo
+//ponto 24 map reduce -- meda de horas de cada genero de jogo ponto 25 uso de function
 
 db.jogosVideoGame.find();
   
@@ -119,8 +119,28 @@ var reduce = function(Genero,Horas){return Array.avg(Horas);};
 
 db.jogosVideoGame.mapReduce(map,reduce,{out:"mediares"});
 
+//ponto 26 pretty
+
 db.mediares.find().pretty();
-db.paisOrigemCounts.find();
+
+//ponto 27 uso do all, todos os usuarios que jofaram tlou
+
+db.usuarios.find({ "jogos": { $all: ["The Last of Us"]}});
+
+//ponto 28 - setintersection encontra valores em comum entre documentos e arrays
+
+db.usuarios.aggregate([{ $project: {nome:1, commonGames: { $setIntersection: ["$jogos", ["The Last of Us", "Red Dead Redemption 2"]] } } }]);
 
 
-//ponto 25
+//ponto 29 - checa se é subset
+
+db.usuarios.aggregate([{ $project: { isSubset: { $setIsSubset: [["The Last of Us"], "$jogos"] } } }]);
+
+//ponto 30 - combina elemento de arrays sem duplicatas
+
+db.usuarios.aggregate([{ $project: { allGames: { $setUnion: ["$jogos", ["The Last of Us"]] } } }]);
+
+//ponto 31
+
+
+

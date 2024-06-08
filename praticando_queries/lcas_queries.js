@@ -148,4 +148,20 @@ db.usuariosJogos.updateOne({ "nome": "João Silva" }, { $addToSet: { "allGames":
 
 db.usuariosJogos.find();
 
-//ponto 32
+//ponto 32 operador set para modificar um valor, modificar horas
+
+db.jogosVideoGame.find();
+db.jogosVideoGame.updateOne({ "titulo": "The Witcher 3: Wild Hunt" }, { $set: { "quantidadeHoras": 300 } });//modific
+db.jogosVideoGame.find();
+
+//ponto 33 - criacao de indice de texto
+
+db.empresasProdutorasDeGames.createIndex({ "comentarios.comentario": "text" });
+
+//pomto 34 - uso do search para busca
+
+db.empresasProdutorasDeGames.find({ $text: { $search: "gráficos" } });// documento que fala dos graficos
+
+//ponto 35
+
+

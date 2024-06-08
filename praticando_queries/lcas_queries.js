@@ -110,13 +110,17 @@ db.usuarios.aggregate([{ $project: { CodName: {$concat:[{$toUpper:{$substr: ["$n
 
 db.empresasProdutorasDeGames.find({$where:"this.fundacao>2000"});
   
-//ponto 24 map reduce -- pendente
+//ponto 24 map reduce -- meda de horas de cada genero de jogo
 
-db.empresasProdutorasDeGames.mapReduce(
-  function() { emit(this.paisOrigem, 1); },
-  function(key, values) { return Array.sum(values); },
-  { out: "paisOrigemCounts" }
-);
+db.jogosVideoGame.find();
+  
+var map = function(){emit(this.genero,this.quantidadeHoras)};
+var reduce = function(Genero,Horas){return Array.avg(Horas);};
 
+db.jogosVideoGame.mapReduce(map,reduce,{out:"mediares"});
+
+db.mediares.find().pretty();
 db.paisOrigemCounts.find();
 
+
+//ponto 25

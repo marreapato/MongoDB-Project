@@ -138,9 +138,11 @@ db.usuarios.aggregate([{ $project: { isSubset: { $setIsSubset: [["The Last of Us
 
 //ponto 30 - combina elemento de arrays sem duplicatas
 
-db.usuarios.aggregate([{ $project: { allGames: { $setUnion: ["$jogos", ["The Last of Us"]] } } }]);
+db.usuarios.aggregate([{ $project: { allGames: { $setUnion: ["$jogos", ["The Last of Us"]] } } },{ $out: "usuariosJogos" }]);
 
-//ponto 31
+//ponto 31 - each faz a adição 
+
+db.empresasEUA.updateOne({ "nome": "Naughty Dog" }, { $addToSet: { "jogosDesenvolvidos": { $each: ["Game1", "Game2"] } } });
 
 
 

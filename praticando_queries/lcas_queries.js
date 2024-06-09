@@ -190,4 +190,13 @@ db.usuarios.update({ "nickname": "jsilva" }, { $set: { "email": "joaosilva@hotma
 //db.usuarios.updateOne({ "nickname": "jsilva" }, { $set: { "email": "joaosilva@hotmail.com" } }); mais seguro
 db.usuarios.find();
 
-//ponto 38
+//ponto 38 SAVE altera o existente e adiciona o inexistente
+
+db.empresasEUA.find();
+db.empresasEUA.save({ "_id": ObjectId("66636a6870e584a47a633b5c"), "nome": "Eletronic Arts", "jogosDesenvolvidos": "FIFA 15" });//atualiza o existente
+db.empresasEUA.find();
+db.empresasEUA.save({ "_id": ObjectId("66736a6870e584a47a633b5d"), "nome": "SEGA", "jogosDesenvolvidos": "Sonic" });//adiciona o inexistente
+db.empresasEUA.find();
+
+//ponto 39
+

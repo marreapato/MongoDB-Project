@@ -183,4 +183,11 @@ db.jogosVideoGame.aggregate( [
    }
 ] );
    
-  
+//ponto 37 comando update
+
+db.usuarios.find();
+db.usuarios.update({ "nickname": "jsilva" }, { $set: { "email": "joaosilva@hotmail.com" } });
+//db.usuarios.updateOne({ "nickname": "jsilva" }, { $set: { "email": "joaosilva@hotmail.com" } }); mais seguro
+db.usuarios.find();
+
+//ponto 38

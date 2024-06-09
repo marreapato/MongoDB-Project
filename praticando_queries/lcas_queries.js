@@ -198,5 +198,9 @@ db.empresasEUA.find();
 db.empresasEUA.save({ "_id": ObjectId("66736a6870e584a47a633b5d"), "nome": "SEGA", "jogosDesenvolvidos": "Sonic" });//adiciona o inexistente
 db.empresasEUA.find();
 
-//ponto 39
+//ponto 39 skip pula os 5 primeiros documentos
+
+db.usuarios.find().skip(5);
+
+//ponto 40
 

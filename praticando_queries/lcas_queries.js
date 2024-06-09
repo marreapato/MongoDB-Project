@@ -243,8 +243,16 @@ db.empresasProdutorasDeGames.aggregate([{ $sample: { size: 3 } }]);
 
 db.usuarios.updateOne({ "nome": "Carlos Souza" }, { $set: { "email": "carlossouza@example.com" } });
 
-//ponto 47
+//ponto 47 encontra um uico documento
+db.empresasProdutorasDeGames.find();
+db.empresasProdutorasDeGames.findOne({ "paisOrigem": "EUA" });
 
+//ponto 48 adiciona um novo item ao array
+
+db.usuarios.find();
+
+db.usuarios.updateOne({ "nickname": "mariaoliveira" }, { $addToSet: { "jogos": "Portal 2" } });
+db.usuarios.find();
 
 
 

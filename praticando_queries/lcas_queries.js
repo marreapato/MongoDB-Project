@@ -202,5 +202,49 @@ db.empresasEUA.find();
 
 db.usuarios.find().skip(5);
 
-//ponto 40
+//ponto 40 - retorna o primeiro documento de cada grupo
+
+db.empresasProdutorasDeGames.aggregate([{ $group: { _id: "$paisOrigem", firstEmpresa: { $first: "$nome" } } }]);
+
+//ponto 41 renameCollection renomeia a colecao
+
+db.empresasEUA.renameCollection("novasEmpresas");
+db.novasEmpresas.find();
+
+//ponto 42 compara duas strings para checar se uma tem uma ordem superior a da otura
+
+db.usuarios.find();
+db.usuarios.aggregate([{ $project: { comparison: { $strcasecmp: ["$nome", "$nickname"] } } }]);
+
+//ponto 43 faz uma avaliacao condicional
+
+db.jogosVideoGame.find();
+
+db.jogosVideoGame.aggregate([{ $project: { status: { $cond: { if: {$gte:["$preco", 35] }, then: "Caro", else: "Barato" } } } }]);
+
+//ponto 44 faz um letf OUTER join ou seja pega tudo da intercessao de empresas e os valores totais de usuarios
+
+db.usuarios.aggregate([{
+  $lookup: {
+    from: "empresasProdutorasDeGames",
+    localField: "jogos",
+    foreignField: "jogosDesenvolvidos",
+    as: "empresaInfo"
+  }
+}]);
+
+
+//ponto 45 - seleciona uma amostra aleatoria
+
+db.empresasProdutorasDeGames.aggregate([{ $sample: { size: 3 } }]);
+
+
+//ponto 46 comando set é usado conjuntamente com o update
+
+db.usuarios.updateOne({ "nome": "Carlos Souza" }, { $set: { "email": "carlossouza@example.com" } });
+
+//ponto 47
+
+
+
 

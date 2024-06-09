@@ -162,6 +162,25 @@ db.empresasProdutorasDeGames.createIndex({ "comentarios.comentario": "text" });
 
 db.empresasProdutorasDeGames.find({ $text: { $search: "gráficos" } });// documento que fala dos graficos
 
-//ponto 35
+//ponto 35 - agrupa a contagem em ordem decrescente
+
+db.usuarios.aggregate([{ $sortByCount: "$acessoAntecipado" }]);
+
+//ponto 36 comando filter, utilizado para filtrar em documentos de aninhados
 
 
+db.jogosVideoGame.aggregate( [
+   {
+      $project: {
+         critica_site: {
+            $filter: {
+               input: "$criticas",
+               as: "critica",
+               cond: { $gte: [ "$$critica.avaliacao", 9] }
+            }
+         }
+      }
+   }
+] );
+   
+  

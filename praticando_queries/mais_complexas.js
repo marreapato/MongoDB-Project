@@ -11,13 +11,3 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
       avgPreco: { $avg: "$jogosDesenvolvidos.criticas.avaliacao" }
     }}
 ]);
-
-db.desenvolvedorasJogosPerfis.aggregate([
-  { $unwind: "$comentarios" },
-  { 
-    $group: {
-      _id: "$jogosDesenvolvidos.genero",
-      avgPreco: { $avg: "$jogosDesenvolvidos.criticas.avaliacao" }
-    }
-  }
-]);

@@ -3,6 +3,12 @@ use projeto3cin
 
 show collections
 
+db.jogosVideoGame.find();
+db.empresasProdutorasDeGames.find();//ano Fundacao
+db.usuarios.find();
+//uma colecao complexa
+
+
 // find e pretty sem o id (procurando jogos de ação sem o id)
 
 db.jogosVideoGame.find({'genero':'Ação'},{_id:false}).pretty();
@@ -256,3 +262,16 @@ db.usuarios.find();
 
 
 
+// lookup para juncao de jogos e empresas
+
+db.empresasProdutorasDeGames.aggregate([{
+  $lookup: {
+    from: "jogosVideoGame",
+    localField: "jogosDesenvolvidos",
+    foreignField: "titulo",
+    as: "jogosDesenvolvidos"
+  }
+},{ $out: "desenvolvedorasJogosPerfis" }]);
+
+db.jogosVideoGame.find()
+db.desenvolvedorasJogosPerfis.find().pretty();

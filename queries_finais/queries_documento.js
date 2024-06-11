@@ -22,7 +22,7 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
 ]);
 
 // ponto 44 +
-    
+
 db.usuarios.aggregate([{
   $lookup: {
     from: "desenvolvedorasJogosPerfis",
@@ -30,6 +30,7 @@ db.usuarios.aggregate([{
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"
   }
-},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},
+},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{ $match: { "empresaInfo.paisOrigem": "EUA" } },
 {$group: { _id: "$nickname",
-    totalHoras:{$sum:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"}}}]);
+    totalHoras:{$sum:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"},
+    precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"}}}]);

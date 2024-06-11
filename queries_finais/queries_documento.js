@@ -30,4 +30,6 @@ db.usuarios.aggregate([{
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"
   }
-}]);
+},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},
+{$group: { _id: "$nickname",
+    totalHoras:{$sum:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"}}}]);

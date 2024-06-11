@@ -36,5 +36,6 @@ db.usuarios.aggregate([{
 {$group: { _id: "$nickname",
     totalHoras:{$sum:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"},
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
-    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalHoras":1,"precoMax":1,"primeiroJogo":1}} ]);
+    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalHoras":1,"precoMax":1,"primeiroJogo":1,
+        statusJogador: { $cond: { if: {$gte:["$totalHoras", 200] }, then: "Promissor", else: "Standard"}}}}]);
     

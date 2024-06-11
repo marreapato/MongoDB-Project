@@ -1,3 +1,4 @@
+
 use project3cin
 
 show collections
@@ -19,3 +20,14 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
       avgAvalicao: { $avg: "$jogosDesenvolvidos.criticas.avaliacao" }
     }}
 ]);
+
+// ponto 44 +
+    
+db.usuarios.aggregate([{
+  $lookup: {
+    from: "desenvolvedorasJogosPerfis",
+    localField: "jogos",
+    foreignField: "jogosDesenvolvidos.titulo",
+    as: "empresaInfo"
+  }
+}]);

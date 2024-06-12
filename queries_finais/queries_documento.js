@@ -1,3 +1,7 @@
+//percentual de horas de jogo por usuario
+//quantidade de usuarios por jogo
+//retornar todas as empresas que obtiveram a indicacao maxima
+//Jogos que possuem baixa avaliacao
 
 use project3cin
 

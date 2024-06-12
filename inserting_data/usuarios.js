@@ -1,5 +1,4 @@
 // Insere a coleção de usuários
-// Insere a coleção de usuários
 db.usuarios.insertMany([
     {
         "nome": "João Silva",
@@ -139,9 +138,20 @@ db.usuarios.insertMany([
         "nickname": "morrowindlover"
     }
 ]);
+    
+//update com $push
+db.usuarios.updateOne(
+    { "nickname": "jsilva" },
+    { 
+        $push: { 
+            "jogos": { 
+                "jogo": "Sonic", 
+                "percentualHoras": 0.2 
+            } 
+        } 
+    }
+);
 
-// Verifica se os dados foram inseridos corretamente
-db.usuarios.find().pretty();
 
 // Verifica se os dados foram inseridos corretamente
 db.usuarios.find().pretty();

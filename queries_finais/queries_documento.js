@@ -2,7 +2,9 @@
 //quantidade de usuarios por jogo
 //retornar todas as empresas que obtiveram a indicacao maxima
 //Jogos que possuem baixa avaliacao
-
+//queries de insercao
+//queries de analise
+//queries de extra
 use project3cin
 
 show collections

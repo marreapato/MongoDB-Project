@@ -1,7 +1,5 @@
 //censura classificacao indicativa
 
-
-//retornar todas as empresas que obtiveram a indicacao maxima
 //Jogos que possuem baixa avaliacao
 //queries de insercao
 //queries de analise
@@ -27,8 +25,6 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
     }},{$sort:{ "avgAvaliacao": 1}}
 ]);
 
-
-
 //quantidade de usuarios por jogo
     
 db.usuarios.aggregate([{
@@ -40,6 +36,7 @@ db.usuarios.aggregate([{
     },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$sortByCount: "$empresaInfo.jogosDesenvolvidos.titulo"},
     {$project:{"totalUsuarios":"$count"}}]);    
     
+//retornar todas as empresas que obtiveram a indicacao maxima
     
     
     

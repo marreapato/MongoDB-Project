@@ -11,7 +11,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 10}
         ],
         "quantidadeHoras": 170,
-        "preco": 59.99
+        "preco": 59.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "The Last of Us Part II",
@@ -23,7 +24,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 9.3}
         ],
         "quantidadeHoras": 40,
-        "preco": 69.99
+        "preco": 69.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "Grand Theft Auto V",
@@ -36,7 +38,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.6}
         ],
         "quantidadeHoras": 110,
-        "preco": 29.99
+        "preco": 29.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "Grand Theft Auto IV",
@@ -49,7 +52,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.4}
         ],
         "quantidadeHoras": 25,
-        "preco": 19.99
+        "preco": 19.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "Red Dead Redemption 2",
@@ -62,7 +66,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.7}
         ],
         "quantidadeHoras": 430,
-        "preco": 59.99
+        "preco": 59.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "The Witcher 3: Wild Hunt",
@@ -75,7 +80,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.6}
         ],
         "quantidadeHoras": 3000,
-        "preco": 39.99
+        "preco": 39.99,
+        "classificacaoIndicativa": "18+"
     },
     {
         "titulo": "Half-Life 2",
@@ -87,7 +93,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 9.8}
         ],
         "quantidadeHoras": 120,
-        "preco": 9.99
+        "preco": 9.99,
+        "classificacaoIndicativa": "16+"
     },
     {
         "titulo": "Portal 2",
@@ -100,7 +107,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.6}
         ],
         "quantidadeHoras": 40,
-        "preco": 19.99
+        "preco": 19.99,
+        "classificacaoIndicativa": "10+"
     },
     {
         "titulo": "The Elder Scrolls V: Skyrim",
@@ -113,7 +121,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 9.2}
         ],
         "quantidadeHoras": 600,
-        "preco": 29.99
+        "preco": 29.99,
+        "classificacaoIndicativa": "17+"
     },
     {
         "titulo": "The Elder Scrolls IV: Morrowind",
@@ -125,7 +134,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 8.9}
         ],
         "quantidadeHoras": 400,
-        "preco": 9.99
+        "preco": 9.99,
+        "classificacaoIndicativa": "17+"
     },
     {
         "titulo": "The Elder Scrolls III: Oblivion",
@@ -138,7 +148,8 @@ db.jogosVideoGame.insertMany([
             {"site": "GameSpot", "avaliacao": 8.8}
         ],
         "quantidadeHoras": 102,
-        "preco": 14.99
+        "preco": 14.99,
+        "classificacaoIndicativa": "17+"
     },
     {
         "titulo": "The Elder Scrolls II: Daggerfall",
@@ -150,7 +161,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 8.7}
         ],
         "quantidadeHoras": 75,
-        "preco": 4.99
+        "preco": 4.99,
+        "classificacaoIndicativa": "13+"
     },
     {
         "titulo": "The Elder Scrolls",
@@ -162,7 +174,8 @@ db.jogosVideoGame.insertMany([
             {"site": "IGN", "avaliacao": 7.5}
         ],
         "quantidadeHoras": 30,
-        "preco": 2.99
+        "preco": 2.99,
+        "classificacaoIndicativa": "13+"
     }
 ]);
 

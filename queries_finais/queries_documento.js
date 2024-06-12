@@ -67,7 +67,7 @@ db.usuarios.aggregate([{
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"
   }
-},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{ $match: { "empresaInfo.paisOrigem": "EUA" } },
+},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},
 {$group: { _id: "$nickname",
     totalGasto:{$sum:"$empresaInfo.jogosDesenvolvidos.preco"},
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},

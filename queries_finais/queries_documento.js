@@ -17,8 +17,7 @@ db.desenvolvedorasJogosPerfis.find().pretty();
 
 db.desenvolvedorasJogosPerfis.createIndex({ "comentarios.comentario": "text" });
 db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).count();// total documento que fala de jogos
-db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).limit(1).pretty();// primeiro documento que fala de jogos
-db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).skip(1).pretty();// restante dos documentos
+db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).pretty();// restante dos documentos
 
 // ponto 4 + ponto 8 + 9 + 13 media das avaliacoes dos sites por genero de jogo
 

@@ -1,5 +1,3 @@
-use projeto3cin
-
 db.jogosVideoGame.insertMany([
     {
         "titulo": "The Last of Us",
@@ -178,5 +176,20 @@ db.jogosVideoGame.insertMany([
         "classificacaoIndicativa": "13+"
     }
 ]);
+    
+use projeto3cin
 
-db.jogosVideoGame.find().pretty();
+db.jogosVideoGame.save({
+    "_id": ObjectId("6669d860e4b7044b12c9eb5e"),
+    "titulo": "Sonic",
+    "genero": "Plataforma",
+    "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
+    "anoLancamento": 1991,
+    "criticas": [
+        {"site": "Metacritic", "avaliacao": 8.8},
+        {"site": "IGN", "avaliacao": 8.5}
+    ],
+    "quantidadeHoras": 20,
+    "preco": 14.99,
+    "classificacaoIndicativa": "L"
+});

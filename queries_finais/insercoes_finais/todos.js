@@ -277,7 +277,7 @@ db.jogosVideoGame.insertMany([
         ],
         "quantidadeHoras": 600,
         "preco": 29.99,
-        "classificacaoIndicativa": "17+"
+        "classificacaoIndicativa": "16+"
     },
     {
         "titulo": "The Elder Scrolls IV: Morrowind",
@@ -290,7 +290,7 @@ db.jogosVideoGame.insertMany([
         ],
         "quantidadeHoras": 400,
         "preco": 9.99,
-        "classificacaoIndicativa": "17+"
+        "classificacaoIndicativa": "16+"
     },
     {
         "titulo": "The Elder Scrolls III: Oblivion",
@@ -304,7 +304,7 @@ db.jogosVideoGame.insertMany([
         ],
         "quantidadeHoras": 102,
         "preco": 14.99,
-        "classificacaoIndicativa": "17+"
+        "classificacaoIndicativa": "16+"
     },
     {
         "titulo": "The Elder Scrolls II: Daggerfall",
@@ -317,7 +317,7 @@ db.jogosVideoGame.insertMany([
         ],
         "quantidadeHoras": 75,
         "preco": 4.99,
-        "classificacaoIndicativa": "13+"
+        "classificacaoIndicativa": "14+"
     },
     {
         "titulo": "The Elder Scrolls",
@@ -330,9 +330,10 @@ db.jogosVideoGame.insertMany([
         ],
         "quantidadeHoras": 30,
         "preco": 2.99,
-        "classificacaoIndicativa": "13+"
+        "classificacaoIndicativa": "14+"
     }
 ]);
+
     
 
 db.jogosVideoGame.save({

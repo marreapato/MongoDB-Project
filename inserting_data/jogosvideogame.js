@@ -177,7 +177,6 @@ db.jogosVideoGame.insertMany([
     }
 ]);
     
-use projeto3cin
 
 db.jogosVideoGame.save({
     "_id": ObjectId("6669d860e4b7044b12c9eb5e"),
@@ -193,3 +192,9 @@ db.jogosVideoGame.save({
     "preco": 14.99,
     "classificacaoIndicativa": "L"
 });
+
+
+db.jogosVideoGame.updateOne(
+    { titulo: "The Witcher 3: Wild Hunt" },
+    { $set: { quantidadeHoras: 200 } }
+);

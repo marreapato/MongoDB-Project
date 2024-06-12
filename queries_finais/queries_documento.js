@@ -51,7 +51,11 @@ db.desenvolvedorasJogosPerfis.aggregate([
 
 //Jogos que possuem baixa avaliacao fazer
     
-db.desenvolvedorasJogosPerfis.find();    
+db.desenvolvedorasJogosPerfis.find();  
+
+// total de jogos por classificacao indicativa
+
+db.desenvolvedorasJogosPerfis.find();  
     
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
 

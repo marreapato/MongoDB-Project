@@ -36,12 +36,23 @@ db.usuarios.aggregate([{
     },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$sortByCount: "$empresaInfo.jogosDesenvolvidos.titulo"},
     {$project:{"totalUsuarios":"$count"}}]);    
     
+
+
 //retornar todas as empresas que obtiveram a indicacao maxima
-    
-    
-    
-    
-    
+
+db.desenvolvedorasJogosPerfis.aggregate([
+    { $unwind: "$comentarios" },
+    {$match: {"comentarios.indicacao": {$gte:10}}},
+    {$project: {
+            nomeEmpresa: "$nome",
+            jogoDesenvolvido: "$jogosDesenvolvidos.titulo",
+            indicacao:"$comentarios.indicacao",
+            usuario:"$comentarios.usuario"
+        }
+    },{$group:{_id:"$nomeEmpresa",usuarios:{$addToSet:"$usuario"}}}
+]);
+
+
     
 // extra
 

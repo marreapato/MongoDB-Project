@@ -65,10 +65,10 @@ db.usuarios.aggregate([{
   }
 },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{ $match: { "empresaInfo.paisOrigem": "EUA" } },
 {$group: { _id: "$nickname",
-    totalHoras:{$sum:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"},
+    totalGasto:{$sum:"$empresaInfo.jogosDesenvolvidos.preco"},
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
-    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalHoras":1,"precoMax":1,"primeiroJogo":1,
-        statusJogador: { $cond: { if: {$gte:["$totalHoras", 200] }, then: "Promissor", else: "Standard"}}}}]);
+    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalGasto":1,"precoMax":1,"primeiroJogo":1,
+        statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
         
         
         

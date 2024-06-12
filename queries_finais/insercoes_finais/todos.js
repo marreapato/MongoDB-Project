@@ -489,3 +489,23 @@ db.empresasProdutorasDeGames.updateOne(
     { nome: "Bethesda" },
     { $addToSet: { jogosDesenvolvidos: { $each: ["The Elder Scrolls II: Daggerfall", "The Elder Scrolls"] } } }
 );
+
+// lookup para juncao de jogos e empresas
+
+db.empresasProdutorasDeGames.aggregate([{
+  $lookup: {
+    from: "jogosVideoGame",
+    localField: "jogosDesenvolvidos",
+    foreignField: "titulo",
+    as: "jogosDesenvolvidos"
+  }
+},{ $out: "desenvolvedorasJogos" }]);
+
+//renomeando colecao
+
+db.desenvolvedorasJogos.renameCollection("desenvolvedorasJogosPerfis");
+
+//drop de colecoes inuteis
+
+db.jogosVideoGame.drop();
+db.empresasProdutorasDeGames.drop();

@@ -25,8 +25,8 @@ db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).skip(1).pret
 db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $unwind: "$jogosDesenvolvidos.criticas"},
 {$group: {
       _id: "$jogosDesenvolvidos.genero",
-      avgAvalicao: { $avg: "$jogosDesenvolvidos.criticas.avaliacao" }
-    }}
+      avgAvaliacao: { $avg: "$jogosDesenvolvidos.criticas.avaliacao" }
+    }},{$sort:{ "avgAvaliacao": 1}}
 ]);
 
 // ponto 44 +

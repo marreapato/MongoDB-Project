@@ -1,4 +1,3 @@
-//Jogos que possuem baixa avaliacao
 //queries de insercao
 //queries de analise
 //queries de extra
@@ -50,7 +49,9 @@ db.desenvolvedorasJogosPerfis.aggregate([
     },{$group:{_id:"$nomeEmpresa",usuariosQueIndicaram:{$addToSet:"$usuario"}}}
 ]);
 
-
+//Jogos que possuem baixa avaliacao fazer
+    
+db.desenvolvedorasJogosPerfis.find();    
     
 // extra
 

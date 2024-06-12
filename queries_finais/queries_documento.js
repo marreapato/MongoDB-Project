@@ -1,3 +1,5 @@
+//censura classificacao indicativa
+
 //percentual de horas de jogo por usuario
 //quantidade de usuarios por jogo
 //retornar todas as empresas que obtiveram a indicacao maxima

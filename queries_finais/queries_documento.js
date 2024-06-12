@@ -33,10 +33,11 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
     
 db.desenvolvedorasJogosPerfis.find();
 
+
 db.usuarios.aggregate([{
   $lookup: {
     from: "desenvolvedorasJogosPerfis",
-    localField: "jogos",
+    localField: "jogos.jogo",
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"
   }
@@ -46,4 +47,7 @@ db.usuarios.aggregate([{
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
     primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalHoras":1,"precoMax":1,"primeiroJogo":1,
         statusJogador: { $cond: { if: {$gte:["$totalHoras", 200] }, then: "Promissor", else: "Standard"}}}}]);
+        
+        
+        
     

@@ -46,6 +46,20 @@ db.empresasProdutorasDeGames.insertMany([
                 "indicacao": 9
             }
         ]
+    },{
+        "nome": "SEGA",
+        "paisOrigem": "Japão",
+        "fundacao": 1988,
+        "jogosDesenvolvidos": [
+            "Sonic"
+        ],
+        "comentarios": [
+            {
+                "usuario": "jsilva",
+                "comentario": "Nostalgia Pura!",
+                "indicacao": 10
+            }
+        ]
     },
     {
         "nome": "CD Projekt Red",
@@ -96,8 +110,6 @@ db.empresasProdutorasDeGames.insertMany([
             "The Elder Scrolls V: Skyrim",
             "The Elder Scrolls IV: Morrowind",
             "The Elder Scrolls III: Oblivion",
-            "The Elder Scrolls II: Daggerfall",
-            "The Elder Scrolls"
         ],
         "comentarios": [
             {
@@ -114,5 +126,13 @@ db.empresasProdutorasDeGames.insertMany([
     }
 ]);
 
-// Verificar os documentos inseridos
+//mais dois jogos de elder scrolls
+
+db.empresasProdutorasDeGames.updateOne(
+    { nome: "Bethesda" },
+    { $addToSet: { jogosDesenvolvidos: { $each: ["The Elder Scrolls II: Daggerfall", "The Elder Scrolls"] } } }
+);
+
+db.empresasProdutorasDeGames.find({ nome: "Bethesda" }).pretty();
+
 db.empresasProdutorasDeGames.find().pretty();

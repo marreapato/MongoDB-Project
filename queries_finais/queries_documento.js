@@ -53,6 +53,10 @@ db.desenvolvedorasJogosPerfis.aggregate([
     
 db.desenvolvedorasJogosPerfis.find();    
     
+//percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
+
+db.usuarios.find();
+    
 // extra
 
 

@@ -1,5 +1,3 @@
-//censura classificacao indicativa
-
 //Jogos que possuem baixa avaliacao
 //queries de insercao
 //queries de analise
@@ -49,7 +47,7 @@ db.desenvolvedorasJogosPerfis.aggregate([
             indicacao:"$comentarios.indicacao",
             usuario:"$comentarios.usuario"
         }
-    },{$group:{_id:"$nomeEmpresa",usuarios:{$addToSet:"$usuario"}}}
+    },{$group:{_id:"$nomeEmpresa",usuariosQueIndicaram:{$addToSet:"$usuario"}}}
 ]);
 
 

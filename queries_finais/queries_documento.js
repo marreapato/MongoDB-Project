@@ -173,6 +173,13 @@ db.usuarios.aggregate([
 db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
 {$sortByCount: "$nome"},{$project:{"totalJogos":"$count"}}]);
     
-//jogos com 4 idiomas ou mais
-    
+//jogos com 3 idiomas ou mais
+
+db.desenvolvedorasJogosPerfis.aggregate([
+    { $unwind: "$jogosDesenvolvidos" },
+    { $match: { $expr: { $gte: [ { $size: "$jogosDesenvolvidos.idiomasDisponiveis" }, 4 ] } } },
+    {$project:{_id:"$jogosDesenvolvidos.titulo",idiomas:"$jogosDesenvolvidos.idiomasDisponiveis"}}
+]);
+
+
 //extras

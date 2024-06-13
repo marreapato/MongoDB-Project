@@ -165,7 +165,7 @@ db.usuarios.aggregate([
     }}
 ]);
     
-// extra
+// estatisticas de usuarios
 
 db.usuarios.aggregate([{
   $lookup: {
@@ -180,4 +180,60 @@ db.usuarios.aggregate([{
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
     primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalGasto":1,"precoMax":1,"primeiroJogo":1,
         statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
-        
+
+
+//faturamento de cada empresa e quantidade vendida
+
+db.desenvolvedorasJogosPerfis.find();
+
+
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.nome",
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}])
+    
+//outra maneira
+    
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.jogosDesenvolvidos.titulo",empresa:{$first:"$detalhesDoJogo.nome"},
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}},
+    {$group: { _id: "$empresa",
+    totalFaturado:{$sum:"$totalFaturado"},quantidadeVendida:{$sum:"$quantidadeVendida"}}}])
+
+//valor arrecadado por jogo
+    
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.jogosDesenvolvidos.titulo",
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}])

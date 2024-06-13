@@ -170,5 +170,9 @@ db.usuarios.aggregate([
     
 //quantidade de jogos de cada empresa
 
+db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
+{$sortByCount: "$nome"},{$project:{"totalJogos":"$count"}}]);
+    
+//jogos com 4 idiomas ou mais
     
 //extras

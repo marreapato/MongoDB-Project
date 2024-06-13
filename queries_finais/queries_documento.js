@@ -72,6 +72,7 @@ db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
     totalJogos:{$sum:1}}},{$sort:{"totalJogos":1}}]);
 
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
+
     
 db.usuarios.aggregate([{
     $lookup:{from: "desenvolvedorasJogosPerfis",
@@ -80,10 +81,25 @@ db.usuarios.aggregate([{
     as: "empresaInfo"}
     
     },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$unwind:"$jogos"},{$project:{"nome":1,_id:0,"jogos":"$jogos.jogo",
-        totalHoras:{$multiply:["$jogos.percentualHoras","$empresaInfo.jogosDesenvolvidos.quantidadeHoras"]}}}]);
+        totalHoras:"$jogos.percentualHoras",jogoHoras:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"}}]);
 
 
-    
+
+db.usuarios.aggregate([
+    {
+        $unwind: "$jogos"
+    },
+    {
+        $lookup: {
+            from: "desenvolvedorasJogosPerfis",
+            localField: "jogos.jogo",
+            foreignField: "jogosDesenvolvidos.titulo",
+            as: "jogos.detalhes"
+        }
+    }
+])
+
+
 // extra
 
 
@@ -103,4 +119,56 @@ db.usuarios.aggregate([{
         
         
         
-    
+//funcionou este, mas preciso aprender (percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario)
+db.usuarios.aggregate([
+    {
+        $unwind: "$jogos"
+    },
+    {
+        $lookup: {
+            from: "desenvolvedorasJogosPerfis",
+            localField: "jogos.jogo",
+            foreignField: "jogosDesenvolvidos.titulo",
+            as: "detalhesDoJogo"
+        }
+    },
+    {
+        $unwind: "$detalhesDoJogo"
+    },
+    {
+        $addFields: {
+            "jogos.detalhes": {
+                $arrayElemAt: [
+                    {
+                        $filter: {
+                            input: "$detalhesDoJogo.jogosDesenvolvidos",
+                            as: "detalhe",
+                            cond: { $eq: ["$$detalhe.titulo", "$jogos.jogo"] }
+                        }
+                    }, 0
+                ]
+            }
+        }
+    },
+    {
+        $addFields: {
+            "jogos.horasJogadas": {
+                $multiply: [
+                    "$jogos.percentualHoras",
+                    "$jogos.detalhes.quantidadeHoras"
+                ]
+            }
+        }
+    },
+    {
+        $group: {
+            _id: "$_id",
+            nome: { $first: "$nome" },
+            idade: { $first: "$idade" },
+            email: { $first: "$email" },
+            jogos: { $push: "$jogos" },
+            acessoAntecipado: { $first: "$acessoAntecipado" },
+            nickname: { $first: "$nickname" }
+        }
+    }
+])

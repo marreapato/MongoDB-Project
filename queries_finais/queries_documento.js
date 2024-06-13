@@ -122,4 +122,15 @@ db.usuarios.aggregate([{
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
     primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalGasto":1,"precoMax":1,"primeiroJogo":1,
         statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
+
         
+//faturamento de cada empresa
+
+db.usuarios.find();
+        
+db.usuarios.aggregate([]);
+        
+
+//quantidade de jogos de cada usuario
+        
+//quantidade de jogos de cada empresa

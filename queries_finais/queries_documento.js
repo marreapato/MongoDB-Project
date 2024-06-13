@@ -11,6 +11,10 @@ db.desenvolvedorasJogosPerfis.createIndex({ "comentarios.comentario": "text" });
 db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).count();// total documento que fala de jogos
 db.desenvolvedorasJogosPerfis.find({ $text: { $search: "jogos" } }).pretty();// restante dos documentos
 
+//usuarios com mais de 25 anos
+
+db.usuarios.find({$where:"this.idade>25"});  
+
 // ponto 4 + ponto 8 + 9 + 13 media das avaliacoes dos sites por genero de jogo
 
 db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $unwind: "$jogosDesenvolvidos.criticas"},
@@ -162,15 +166,9 @@ db.usuarios.aggregate([
     }
   },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.jogosDesenvolvidos.titulo",
     totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}]);
-    
-
-//quantidade de jogos de cada usuario
-        
+            
     
 //quantidade de jogos de cada empresa
 
-  
-//usuarios com mais de 25 anos
-  
-  
+    
 //extras

@@ -66,9 +66,11 @@ db.desenvolvedorasJogosPerfis.aggregate([
 ]);
 
 // total de jogos por classificacao indicativa
+   
+db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
+{$group:{_id:"$jogosDesenvolvidos.classificacaoIndicativa",
+    totalJogos:{$sum:1}}},{$sort:{"totalJogos":1}}]);
 
-db.desenvolvedorasJogosPerfis.find();  
-    
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
 
 db.usuarios.find();

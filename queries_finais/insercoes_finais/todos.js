@@ -1,4 +1,6 @@
 // Insere a coleção de usuários
+
+    
 db.usuarios.insertMany([
     {
         "nome": "João Silva",
@@ -136,9 +138,80 @@ db.usuarios.insertMany([
         ],
         "acessoAntecipado": true,
         "nickname": "morrowindlover"
+    },
+    {
+        "nome": "Antonio Nimo",
+        "idade": 28,
+        "email": "antoniomo@example.com",
+        "jogos": [
+            {"jogo": "Sonic", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "ant_nimo"
+    },
+    {
+        "nome": "Zilda Arns",
+        "idade": 29,
+        "email": "zildarns@example.com",
+        "jogos": [
+            {"jogo": "The Legend of Zelda: Breath of the Wild", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "zeldafan"
+    },
+    {
+        "nome": "Mario Santos",
+        "idade": 25,
+        "email": "mariosantos@gmail.com",
+        "jogos": [
+            {"jogo": "Super Mario Odyssey", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "mariolover"
+    },
+    {
+        "nome": "Gabriel Ferreira",
+        "idade": 28,
+        "email": "gferreira@example.com",
+        "jogos": [
+            {"jogo": "God of War", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "gowfan"
+    },
+    {
+        "nome": "Cybele Silva",
+        "idade": 27,
+        "email": "cybelsil@example.com",
+        "jogos": [
+            {"jogo": "Cyberpunk 2077", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "cyberfan"
+    },
+    {
+        "nome": "Bernardo Barbosa",
+        "idade": 21,
+        "email": "babrbs@example.com",
+        "jogos": [
+            {"jogo": "Minecraft", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "blockbuilder"
+    },
+    {
+        "nome": "Carlos Miranda",
+        "idade": 22,
+        "email": "crewmate@example.com",
+        "jogos": [
+            {"jogo": "Among Us", "percentualHoras": 1.0}
+        ],
+        "acessoAntecipado": false,
+        "nickname": "crewmate"
     }
 ]);
-    
+
+
 //update com $push
 db.usuarios.updateOne(
     { "nickname": "jsilva" },
@@ -152,11 +225,13 @@ db.usuarios.updateOne(
     }
 );
 
-
 // Jogos
 
+
+
+
 db.jogosVideoGame.insertMany([
-    {
+     {
         "titulo": "The Last of Us",
         "genero": "Ação e Aventura",
         "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
@@ -331,10 +406,88 @@ db.jogosVideoGame.insertMany([
         "quantidadeHoras": 30,
         "preco": 2.99,
         "classificacaoIndicativa": "14+"
+    },
+    {
+        "titulo": "The Legend of Zelda: Breath of the Wild",
+        "genero": "Ação e Aventura",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Japonês"],
+        "anoLancamento": 2017,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 9.7},
+            {"site": "IGN", "avaliacao": 10}
+        ],
+        "quantidadeHoras": 200,
+        "preco": 59.99,
+        "classificacaoIndicativa": "10+"
+    },
+    {
+        "titulo": "God of War",
+        "genero": "Ação e Aventura",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol"],
+        "anoLancamento": 2018,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 9.6},
+            {"site": "IGN", "avaliacao": 10}
+        ],
+        "quantidadeHoras": 60,
+        "preco": 39.99,
+        "classificacaoIndicativa": "18+"
+    },
+    {
+        "titulo": "Cyberpunk 2077",
+        "genero": "RPG",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
+        "anoLancamento": 2020,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 8.5},
+            {"site": "IGN", "avaliacao": 9.0}
+        ],
+        "quantidadeHoras": 150,
+        "preco": 49.99,
+        "classificacaoIndicativa": "18+"
+    },
+    {
+        "titulo": "Super Mario Odyssey",
+        "genero": "Plataforma",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão", "Japonês"],
+        "anoLancamento": 2017,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 9.6},
+            {"site": "IGN", "avaliacao": 10}
+        ],
+        "quantidadeHoras": 50,
+        "preco": 59.99,
+        "classificacaoIndicativa": "L"
+    },
+    {
+        "titulo": "Minecraft",
+        "genero": "Sandbox",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
+        "anoLancamento": 2011,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 9.3},
+            {"site": "IGN", "avaliacao": 9.0}
+        ],
+        "quantidadeHoras": 9999,
+        "preco": 26.95,
+        "classificacaoIndicativa": "L"
+    },
+    {
+        "titulo": "Among Us",
+        "genero": "Multijogador",
+        "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
+        "anoLancamento": 2018,
+        "criticas": [
+            {"site": "Metacritic", "avaliacao": 8.0},
+            {"site": "IGN", "avaliacao": 8.5}
+        ],
+        "quantidadeHoras": 100,
+        "preco": 4.99,
+        "classificacaoIndicativa": "10+"
     }
 ]);
 
-    
+
 
 db.jogosVideoGame.save({
     "_id": ObjectId("6669d860e4b7044b12c9eb5e"),
@@ -356,7 +509,6 @@ db.jogosVideoGame.updateOne(
     { titulo: "The Witcher 3: Wild Hunt" },
     { $set: { quantidadeHoras: 200 } }
 );
-
 
 //empresas
 
@@ -404,7 +556,8 @@ db.empresasProdutorasDeGames.insertMany([
                 "indicacao": 9
             }
         ]
-    },{
+    },
+    {
         "nome": "SEGA",
         "paisOrigem": "Japão",
         "fundacao": 1988,
@@ -466,8 +619,8 @@ db.empresasProdutorasDeGames.insertMany([
         "fundacao": 1986,
         "jogosDesenvolvidos": [
             "The Elder Scrolls V: Skyrim",
-            "The Elder Scrolls IV: Morrowind",
-            "The Elder Scrolls III: Oblivion",
+            "The Elder Scrolls IV: Oblivion",
+            "The Elder Scrolls III: Morrowind"
         ],
         "comentarios": [
             {
@@ -481,6 +634,87 @@ db.empresasProdutorasDeGames.insertMany([
                 "indicacao": 9
             }
         ]
+    },
+    {
+        "nome": "Nintendo",
+        "paisOrigem": "Japão",
+        "fundacao": 1889,
+        "jogosDesenvolvidos": [
+            "The Legend of Zelda: Breath of the Wild",
+            "Super Mario Odyssey"
+        ],
+        "comentarios": [
+            {
+                "usuario": "zeldafan",
+                "comentario": "Breath of the Wild redefine o gênero de aventura.",
+                "indicacao": 10
+            },
+            {
+                "usuario": "mariolover",
+                "comentario": "Super Mario Odyssey é pura diversão.",
+                "indicacao": 10
+            }
+        ]
+    },
+    {
+        "nome": "Santa Monica Studio",
+        "paisOrigem": "EUA",
+        "fundacao": 1999,
+        "jogosDesenvolvidos": [
+            "God of War"
+        ],
+        "comentarios": [
+            {
+                "usuario": "gowfan",
+                "comentario": "God of War é uma obra-prima.",
+                "indicacao": 10
+            }
+        ]
+    },
+    {
+        "nome": "CD Projekt",
+        "paisOrigem": "Polônia",
+        "fundacao": 1994,
+        "jogosDesenvolvidos": [
+            "Cyberpunk 2077"
+        ],
+        "comentarios": [
+            {
+                "usuario": "cyberfan",
+                "comentario": "Cyberpunk 2077 é um jogo razoavel, apesar dos bugs.",
+                "indicacao": 5
+            }
+        ]
+    },
+    {
+        "nome": "Mojang Studios",
+        "paisOrigem": "Suécia",
+        "fundacao": 2009,
+        "jogosDesenvolvidos": [
+            "Minecraft"
+        ],
+        "comentarios": [
+            {
+                "usuario": "blockbuilder",
+                "comentario": "Minecraft é um jogo infinito.",
+                "indicacao": 10
+            }
+        ]
+    },
+    {
+        "nome": "Innersloth",
+        "paisOrigem": "EUA",
+        "fundacao": 2015,
+        "jogosDesenvolvidos": [
+            "Among Us"
+        ],
+        "comentarios": [
+            {
+                "usuario": "crewmate",
+                "comentario": "Among Us é muito divertido com amigos.",
+                "indicacao": 9
+            }
+        ]
     }
 ]);
 
@@ -490,7 +724,7 @@ db.empresasProdutorasDeGames.updateOne(
     { nome: "Bethesda" },
     { $addToSet: { jogosDesenvolvidos: { $each: ["The Elder Scrolls II: Daggerfall", "The Elder Scrolls"] } } }
 );
-
+    
 // lookup para juncao de jogos e empresas
 
 db.empresasProdutorasDeGames.aggregate([{

@@ -228,3 +228,17 @@ var reduce = function(Acesso,Idade){return Array.avg(Idade);};
 db.usuarios.mapReduce(map,reduce,{out:"mediares"});
 
 db.mediares.find();
+
+//uso de FUNCTION mais especifico
+
+//usuarios com mais de 27 anos
+
+// Define a function
+function findUsersAboveAge() {
+    var chosenAge = 27; // age
+
+    return db.usuarios.find({ idade: { $gt: chosenAge } }).toArray();
+}
+
+
+findUsersAboveAge();

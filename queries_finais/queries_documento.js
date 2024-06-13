@@ -183,3 +183,48 @@ db.desenvolvedorasJogosPerfis.aggregate([
 
 
 //extras
+    
+//selecionando uma amostra de 5    
+db.usuarios.aggregate([{ $sample: { size: 5 } }]);
+
+//uma empresa com sede nos EUA   
+db.desenvolvedorasJogosPerfis.findOne({ "paisOrigem": "EUA" });
+
+//skip pula os 5 primeiros documentos
+db.usuarios.find().skip(5);
+
+//concatenation a criacao de um id de usuario com base no nome e nickname
+
+db.usuarios.aggregate([{ $project: { CodName: {$concat:[{$toUpper:{$substr: ["$nome", 0, 4] }},"-",{$toUpper:"$nickname"}]} }},{$limit:3} ]);
+
+
+//encontra valores em comum entre documentos e arrays
+
+db.usuarios.aggregate([{ $project: {nome:1, commonGames: { $setIntersection: ["$jogos.jogo", ["The Last of Us"]] } } },
+{ $match: { $expr: { $gt: [ { $size: "$commonGames" }, 0 ] } } }
+]);
+
+//checa se é subset
+
+db.usuarios.aggregate([{ $project: { isSubset: { $setIsSubset: [["The Last of Us"], "$jogos.jogo"] } } }]);
+
+//Combina elemento de arrays
+
+db.usuarios.aggregate([{ $project: {nome:1,todosOsJogos: { $setUnion: ["$jogos.jogo", ["The Last of Us"]] } } }]);
+
+//Compara duas strings para checar se uma tem uma ordem superior a da otura
+
+db.usuarios.aggregate([{ $project: { comparison: { $strcasecmp: ["$nome", "$nickname"] } } }]);
+
+//Compara duas strings para checar se uma tem uma ordem superior a da otura
+
+db.usuarios.aggregate([{ $project: { comparison: { $strcasecmp: ["$nome", "$nickname"] } } }]);
+
+//media de horas de cada genero de jogo
+
+var map = function(){emit(this.acessoAntecipado,this.idade)};
+var reduce = function(Acesso,Idade){return Array.avg(Idade);};
+
+db.usuarios.mapReduce(map,reduce,{out:"mediares"});
+
+db.mediares.find();

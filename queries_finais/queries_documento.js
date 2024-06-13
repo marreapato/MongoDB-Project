@@ -49,9 +49,21 @@ db.desenvolvedorasJogosPerfis.aggregate([
     },{$group:{_id:"$nomeEmpresa",usuariosQueIndicaram:{$addToSet:"$usuario"}}}
 ]);
 
-//Jogos que possuem baixa avaliacao fazer
-    
-db.desenvolvedorasJogosPerfis.find();  
+//Jogos que possuem baixa avaliacao  
+
+db.desenvolvedorasJogosPerfis.aggregate([
+   { $unwind: "$jogosDesenvolvidos" },
+   { $project: {_id: "$jogosDesenvolvidos.titulo",
+         critica_site: {
+            $filter: {
+               input: "$jogosDesenvolvidos.criticas",
+               as: "critica",
+               cond: { $lt: [ "$$critica.avaliacao", 8] }
+            }
+         }
+      }
+   },{ $match: { "critica_site.0": { $exists: true } } }
+]);
 
 // total de jogos por classificacao indicativa
 

@@ -70,18 +70,34 @@ db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
     totalJogos:{$sum:1}}},{$sort:{"totalJogos":1}}]);
 
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
+//parte um apenas dados que deram certo
+    
+db.usuarios.aggregate([{$unwind: "$jogos"},
+    {
+        $lookup: {
+            from: "desenvolvedorasJogosPerfis",
+            let: { jogo: "$jogos.jogo" },
+            pipeline: [//retorna apenas os dados que deram match
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+       as: "detalhesDoJogo"}}])
+       
+//parte dois tira o Array
 
 db.usuarios.aggregate([{$unwind: "$jogos"},
     {
         $lookup: {
             from: "desenvolvedorasJogosPerfis",
             let: { jogo: "$jogos.jogo" },
-            pipeline: [
+            pipeline: [//retorna apenas os dados que deram match
         { $unwind: "$jogosDesenvolvidos" },
         { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
       ],
-       as: "detalhesDoJogo"}}])//retorna apenas os dados que deram match
+       as: "detalhesDoJogo"}},{$unwind: "$detalhesDoJogo"}])
        
+
+//parte 3 correcao  
 
 db.usuarios.aggregate([
   { $unwind: "$jogos" },
@@ -95,27 +111,20 @@ db.usuarios.aggregate([
       ],
       as: "detalhesDoJogo"
     }
-  },
-  
-  // Filtra para manter apenas os documentos que têm detalhes do jogo (se houver)
-  { $match: { detalhesDoJogo: { $ne: [] } } },
-  
+  },  {$unwind: "$detalhesDoJogo"},
   // Projeta os campos desejados
   {
     $project: {
-      _id: 0,
+      _id: "$nickname",
       nome: 1,
       jogo: "$jogos.jogo",
       percentualHoras: "$jogos.percentualHoras",
-      quantidadeHoras: { $arrayElemAt: ["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras", 0] }
+      quantidadeHoras: "$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras",
+      horasJogadas:{$multiply:["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras","$jogos.percentualHoras"]}
     }
   }
-])
-
+]);
     
-
-
-
 // extra
 
 db.usuarios.aggregate([{

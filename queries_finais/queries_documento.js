@@ -22,8 +22,13 @@ db.desenvolvedorasJogosPerfis.aggregate([{ $unwind: "$jogosDesenvolvidos"},{ $un
     }},{$sort:{ "avgAvaliacao": 1}}
 ]);
 
-//quantidade de usuarios por jogo
+
+//todos usuarios que jogam the last of us
     
+db.usuarios.find({ "jogos.jogo": { $all: ["The Last of Us"]}});
+
+//quantidade de usuarios por jogo
+
 db.usuarios.aggregate([{
     $lookup:{from: "desenvolvedorasJogosPerfis",
     localField: "jogos.jogo",
@@ -73,6 +78,11 @@ db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
 
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
 
+
+db.usuarios.aggregate([
+    {
+        $unwind: "$jogos"
+    }]);
     
 db.usuarios.aggregate([{
     $lookup:{from: "desenvolvedorasJogosPerfis",
@@ -80,7 +90,7 @@ db.usuarios.aggregate([{
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"}
     
-    },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$unwind:"$jogos"},{$project:{"nome":1,_id:0,"jogos":"$jogos.jogo",
+    },{$project:{"nome":1,_id:0,"jogos":"$jogos.jogo",
         totalHoras:"$jogos.percentualHoras",jogoHoras:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"}}]);
 
 

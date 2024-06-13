@@ -69,36 +69,45 @@ db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
 {$group:{_id:"$jogosDesenvolvidos.classificacaoIndicativa",
     totalJogos:{$sum:1}}},{$sort:{"totalJogos":1}}]);
 
-//percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
-    
-db.usuarios.aggregate([{
-    $lookup:{from: "desenvolvedorasJogosPerfis",
-    localField: "jogos.jogo",
-    foreignField: "jogosDesenvolvidos.titulo",
-    as: "empresaInfo"}
-    
-    },{$project:{"nome":1,_id:0,"jogos":"$jogos.jogo",
-        totalHoras:"$jogos.percentualHoras",jogoHoras:"$empresaInfo.jogosDesenvolvidos.quantidadeHoras"}}]);
-
-
-
+//percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario  
+  
 db.usuarios.aggregate([
+  { $unwind: "$jogos" },
     {
-        $unwind: "$jogos"
-    },
-    {
-        $lookup: {
-            from: "desenvolvedorasJogosPerfis",
-            localField: "jogos.jogo",
-            foreignField: "jogosDesenvolvidos.titulo",
-            as: "jogos.detalhes"
-        }
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
     }
-])
-
-
-// extra
-
+  },  {$unwind: "$detalhesDoJogo"},
+  // Projeta os campos desejados
+  {
+    $project: {
+      _id: "$nickname",
+      nome: 1,
+      jogo: "$jogos.jogo",
+      percentualHoras: "$jogos.percentualHoras",
+      quantidadeHoras: "$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras",
+      horasJogadas:{$multiply:["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras","$jogos.percentualHoras"]}
+    }
+  },{$group: {
+      _id: "$nome", // Agrupa por nome de usuário
+      jogos: {
+        $addToSet: {
+          jogo: "$jogo",
+          percentualHoras: "$percentualHoras",
+          quantidadeHoras: "$quantidadeHoras",
+          horasJogadas: "$horasJogadas"
+        }
+      }
+    }}
+]);
+    
+// extraPrimeiro Jogo do usuario, classificação e total gasto
 
 db.usuarios.aggregate([{
   $lookup: {
@@ -114,58 +123,3 @@ db.usuarios.aggregate([{
     primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalGasto":1,"precoMax":1,"primeiroJogo":1,
         statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
         
-        
-        
-//funcionou este, mas preciso aprender (percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario)
-db.usuarios.aggregate([
-    {
-        $unwind: "$jogos"
-    },
-    {
-        $lookup: {
-            from: "desenvolvedorasJogosPerfis",
-            localField: "jogos.jogo",
-            foreignField: "jogosDesenvolvidos.titulo",
-            as: "detalhesDoJogo"
-        }
-    },
-    {
-        $unwind: "$detalhesDoJogo"
-    },
-    {
-        $addFields: {
-            "jogos.detalhes": {
-                $arrayElemAt: [
-                    {
-                        $filter: {
-                            input: "$detalhesDoJogo.jogosDesenvolvidos",
-                            as: "detalhe",
-                            cond: { $eq: ["$$detalhe.titulo", "$jogos.jogo"] }
-                        }
-                    }, 0
-                ]
-            }
-        }
-    },
-    {
-        $addFields: {
-            "jogos.horasJogadas": {
-                $multiply: [
-                    "$jogos.percentualHoras",
-                    "$jogos.detalhes.quantidadeHoras"
-                ]
-            }
-        }
-    },
-    {
-        $group: {
-            _id: "$_id",
-            nome: { $first: "$nome" },
-            idade: { $first: "$idade" },
-            email: { $first: "$email" },
-            jogos: { $push: "$jogos" },
-            acessoAntecipado: { $first: "$acessoAntecipado" },
-            nickname: { $first: "$nickname" }
-        }
-    }
-])

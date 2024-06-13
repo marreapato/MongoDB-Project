@@ -72,9 +72,6 @@ db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
     totalJogos:{$sum:1}}},{$sort:{"totalJogos":1}}]);
 
 //percentual de horas de cada jogo (ou horas jogadas por cada jogo) por usuario
-
-db.desenvolvedorasJogosPerfis.find();
-
     
 db.usuarios.aggregate([{
     $lookup:{from: "desenvolvedorasJogosPerfis",
@@ -82,7 +79,8 @@ db.usuarios.aggregate([{
     foreignField: "jogosDesenvolvidos.titulo",
     as: "empresaInfo"}
     
-    },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$unwind:"$jogos"}]);
+    },{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},{$unwind:"$jogos"},{$project:{"nome":1,_id:0,"jogos":"$jogos.jogo",
+        totalHoras:{$multiply:["$jogos.percentualHoras","$empresaInfo.jogosDesenvolvidos.quantidadeHoras"]}}}]);
 
 
     

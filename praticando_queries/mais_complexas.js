@@ -124,6 +124,46 @@ db.usuarios.aggregate([
     }
   }
 ]);
+
+
+//parte 4 finalizacao e agrupamento de resultados
+
+
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},
+  // Projeta os campos desejados
+  {
+    $project: {
+      _id: "$nickname",
+      nome: 1,
+      jogo: "$jogos.jogo",
+      percentualHoras: "$jogos.percentualHoras",
+      quantidadeHoras: "$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras",
+      horasJogadas:{$multiply:["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras","$jogos.percentualHoras"]}
+    }
+  },{$group: {
+      _id: "$nome", // Agrupa por nome de usuário
+      jogos: {
+        $addToSet: {
+          jogo: "$jogo",
+          percentualHoras: "$percentualHoras",
+          quantidadeHoras: "$quantidadeHoras",
+          horasJogadas: "$horasJogadas"
+        }
+      }
+    }}
+]);
     
 // extra
 

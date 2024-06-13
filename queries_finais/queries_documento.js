@@ -122,9 +122,9 @@ db.usuarios.aggregate([{$unwind: "$jogos" },
   }
 },{$unwind:"$empresaInfo"},
 {$group: { _id: "$nickname",
-    totalGasto:{$sum:"$empresaInfo.jogosDesenvolvidos.preco"},
+    totalGasto:{$sum:"$empresaInfo.jogosDesenvolvidos.preco"},quantidadeJogos:{$sum:1},
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
-    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"totalGasto":1,"precoMax":1,"primeiroJogo":1,
+    primeiroJogo: { $first: "$empresaInfo.jogosDesenvolvidos.titulo" }}},{$project:{"quantidadeJogos":1,"totalGasto":1,"precoMax":1,"primeiroJogo":1,
         statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
 
         

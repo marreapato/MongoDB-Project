@@ -108,14 +108,19 @@ db.usuarios.aggregate([
     
 // Primeiro Jogo do usuario, classificação e total gasto
 
-db.usuarios.aggregate([{
+db.usuarios.aggregate([{$unwind: "$jogos" },
+
+{
   $lookup: {
     from: "desenvolvedorasJogosPerfis",
-    localField: "jogos.jogo",
-    foreignField: "jogosDesenvolvidos.titulo",
+    let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
     as: "empresaInfo"
   }
-},{$unwind:"$empresaInfo"},{$unwind:"$empresaInfo.jogosDesenvolvidos"},
+},{$unwind:"$empresaInfo"},
 {$group: { _id: "$nickname",
     totalGasto:{$sum:"$empresaInfo.jogosDesenvolvidos.preco"},
     precoMax:{$max:"$empresaInfo.jogosDesenvolvidos.preco"},
@@ -156,14 +161,14 @@ db.usuarios.aggregate([
       as: "detalhesDoJogo"
     }
   },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.jogosDesenvolvidos.titulo",
-    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}])
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}]);
     
 
-    
 //quantidade de jogos de cada usuario
         
     
 //quantidade de jogos de cada empresa
+
   
 //usuarios com mais de 25 anos
   

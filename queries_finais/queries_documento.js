@@ -84,7 +84,6 @@ db.usuarios.aggregate([
       as: "detalhesDoJogo"
     }
   },  {$unwind: "$detalhesDoJogo"},
-  // Projeta os campos desejados
   {
     $project: {
       _id: "$nickname",
@@ -95,7 +94,7 @@ db.usuarios.aggregate([
       horasJogadas:{$multiply:["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras","$jogos.percentualHoras"]}
     }
   },{$group: {
-      _id: "$nome", // Agrupa por nome de usuário
+      _id: "$nome",
       jogos: {
         $addToSet: {
           jogo: "$jogo",
@@ -107,7 +106,7 @@ db.usuarios.aggregate([
     }}
 ]);
     
-// extraPrimeiro Jogo do usuario, classificação e total gasto
+// Primeiro Jogo do usuario, classificação e total gasto
 
 db.usuarios.aggregate([{
   $lookup: {
@@ -124,13 +123,49 @@ db.usuarios.aggregate([{
         statusJogador: { $cond: { if: {$gte:["$totalGasto", 100] }, then: "Promissor", else: "Standard"}}}}]);
 
         
-//faturamento de cada empresa
+//faturamento de cada empresa e quantidade vendida
+    
 
-db.usuarios.find();
-        
-db.usuarios.aggregate([]);
-        
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.nome",
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}])
 
+//valor arrecadado por jogo
+    
+db.usuarios.aggregate([
+  { $unwind: "$jogos" },
+    {
+    $lookup: {
+      from: "desenvolvedorasJogosPerfis",
+      let: { jogo: "$jogos.jogo" },
+      pipeline: [
+        { $unwind: "$jogosDesenvolvidos" },
+        { $match: { $expr: { $eq: ["$jogosDesenvolvidos.titulo", "$$jogo"] } } }
+      ],
+      as: "detalhesDoJogo"
+    }
+  },  {$unwind: "$detalhesDoJogo"},{$group: { _id: "$detalhesDoJogo.jogosDesenvolvidos.titulo",
+    totalFaturado:{$sum:"$detalhesDoJogo.jogosDesenvolvidos.preco"},quantidadeVendida:{$sum:1}}}])
+    
+
+    
 //quantidade de jogos de cada usuario
         
+    
 //quantidade de jogos de cada empresa
+  
+//usuarios com mais de 25 anos
+  
+  
+//extras

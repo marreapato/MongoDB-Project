@@ -180,6 +180,9 @@ db.desenvolvedorasJogosPerfis.aggregate([
     { $match: { $expr: { $gte: [ { $size: "$jogosDesenvolvidos.idiomasDisponiveis" }, 4 ] } } },
     {$project:{_id:"$jogosDesenvolvidos.titulo",idiomas:"$jogosDesenvolvidos.idiomasDisponiveis"}}
 ]);
+    
+
+//jogos que nao tiveram nenhuma venda (mais dificil)
 
 
 //extras
@@ -242,3 +245,5 @@ function findUsersAboveAge() {
 
 
 findUsersAboveAge();
+
+

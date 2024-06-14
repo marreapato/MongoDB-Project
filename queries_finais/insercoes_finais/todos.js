@@ -134,7 +134,7 @@ db.usuarios.insertMany([
         "idade": 33,
         "email": "morrowindlover@example.com",
         "jogos": [
-            {"jogo": "The Elder Scrolls IV: Morrowind", "percentualHoras": 0.9}
+            {"jogo": "The Elder Scrolls III: Morrowind", "percentualHoras": 0.9}
         ],
         "acessoAntecipado": true,
         "nickname": "morrowindlover"
@@ -355,7 +355,7 @@ db.jogosVideoGame.insertMany([
         "classificacaoIndicativa": "16+"
     },
     {
-        "titulo": "The Elder Scrolls IV: Morrowind",
+        "titulo": "The Elder Scrolls III: Morrowind",
         "genero": "RPG",
         "idiomasDisponiveis": ["Inglês", "Português"],
         "anoLancamento": 2002,
@@ -368,7 +368,7 @@ db.jogosVideoGame.insertMany([
         "classificacaoIndicativa": "16+"
     },
     {
-        "titulo": "The Elder Scrolls III: Oblivion",
+        "titulo": "The Elder Scrolls IV: Oblivion",
         "genero": "RPG",
         "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês"],
         "anoLancamento": 2006,

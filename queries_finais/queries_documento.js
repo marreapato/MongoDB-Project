@@ -183,7 +183,15 @@ db.desenvolvedorasJogosPerfis.aggregate([
     
 
 //jogos que nao tiveram nenhuma venda (mais dificil)
-
+    
+db.desenvolvedorasJogosPerfis.aggregate([{$unwind:"$jogosDesenvolvidos"},
+{$lookup:{
+    from:"usuarios",
+    let:{jogo:"$jogosDesenvolvidos.titulo"},
+    pipeline:[{$unwind:"$jogos"},
+    {$match:{$expr:{$eq:["$jogos.jogo","$$jogo"]}}}],
+    as:"usuariosDejogo"}},{$match: { "usuariosDejogo": { $size: 0 } } },{$project:{_id:"$jogosDesenvolvidos.titulo",
+        "empresa":"$nome","info":"$jogosDesenvolvidos"}}]);
 
 //extras
     
@@ -245,5 +253,4 @@ function findUsersAboveAge() {
 
 
 findUsersAboveAge();
-
 

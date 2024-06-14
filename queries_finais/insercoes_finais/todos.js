@@ -439,8 +439,8 @@ db.jogosVideoGame.insertMany([
         "idiomasDisponiveis": ["Inglês", "Português", "Espanhol", "Francês", "Alemão"],
         "anoLancamento": 2020,
         "criticas": [
-            {"site": "Metacritic", "avaliacao": 8.5},
-            {"site": "IGN", "avaliacao": 9.0}
+            {"site": "Metacritic", "avaliacao": 5},
+            {"site": "IGN", "avaliacao": 7.0}
         ],
         "quantidadeHoras": 150,
         "preco": 49.99,
@@ -577,7 +577,8 @@ db.empresasProdutorasDeGames.insertMany([
         "paisOrigem": "Polônia",
         "fundacao": 2002,
         "jogosDesenvolvidos": [
-            "The Witcher 3: Wild Hunt"
+            "The Witcher 3: Wild Hunt",
+            "Cyberpunk 2077"
         ],
         "comentarios": [
             {
@@ -589,6 +590,11 @@ db.empresasProdutorasDeGames.insertMany([
                 "usuario": "rpglover",
                 "comentario": "Melhor RPG de todos os tempos.",
                 "indicacao": 10
+            },
+            {
+                "usuario": "cyberfan",
+                "comentario": "Cyberpunk 2077 é um jogo razoavel, apesar dos bugs.",
+                "indicacao": 8
             }
         ]
     },
@@ -668,21 +674,6 @@ db.empresasProdutorasDeGames.insertMany([
                 "usuario": "gowfan",
                 "comentario": "God of War é uma obra-prima.",
                 "indicacao": 10
-            }
-        ]
-    },
-    {
-        "nome": "CD Projekt",
-        "paisOrigem": "Polônia",
-        "fundacao": 1994,
-        "jogosDesenvolvidos": [
-            "Cyberpunk 2077"
-        ],
-        "comentarios": [
-            {
-                "usuario": "cyberfan",
-                "comentario": "Cyberpunk 2077 é um jogo razoavel, apesar dos bugs.",
-                "indicacao": 5
             }
         ]
     },

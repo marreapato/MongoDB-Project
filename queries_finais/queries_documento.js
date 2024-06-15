@@ -91,14 +91,14 @@ db.usuarios.aggregate([
   {
     $project: {
       _id: "$nickname",
-      nome: 1,
+      nickname: 1,
       jogo: "$jogos.jogo",
       percentualHoras: "$jogos.percentualHoras",
       quantidadeHoras: "$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras",
       horasJogadas:{$multiply:["$detalhesDoJogo.jogosDesenvolvidos.quantidadeHoras","$jogos.percentualHoras"]}
     }
   },{$group: {
-      _id: "$nome",
+      _id: "$nickname",
       jogos: {
         $addToSet: {
           jogo: "$jogo",

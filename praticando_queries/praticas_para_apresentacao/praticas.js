@@ -8,3 +8,6 @@ db.usuarios.aggregate([{$unwind:"$jogos"},{$group:{_id:"$jogos.jogo","mediaPerce
 
 //Quais são os usuários que jogam "The Witcher 3: Wild Hunt"?
 db.usuarios.aggregate([{$unwind:"$jogos"},{$match:{$expr:{$eq:["$jogos.jogo","The Witcher 3: Wild Hunt"]}}},{$project:{nickname:1,jogo:"$jogos.jogo",nome:1}}]);
+
+//Quais são os usuários que têm mais de 30 anos?
+db.usuarios.aggregate([{$match:{$expr:{$gt:["$idade",30]}}}]);

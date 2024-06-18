@@ -3,4 +3,5 @@ db.usuarios.aggregate([{$match:{$expr:{$eq:["$acessoAntecipado",true]}}}]);
 
 //Quais são os jogos mais jogados pelos usuários, considerando o percentual de horas jogadas?
 db.usuarios.aggregate([{$unwind:"$jogos"},{$group:{_id:{Jogo:"$jogos.jogo",Horas:"$jogos.percentualHoras"},"total":{$sum:1}}},{$sort:{"total":1}}]);
-//ou
+//ou considerando percentual medio de horas
+db.usuarios.aggregate([{$unwind:"$jogos"},{$group:{_id:"$jogos.jogo","mediaPercent":{$avg:"$jogos.percentualHoras"}}},{$sort:{"mediaPercent":1}}]);
